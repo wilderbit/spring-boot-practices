@@ -23,6 +23,6 @@ public class ItemController {
 
     @GetMapping(value = "/api/item/get")
     public ResponseEntity<Response> getItem() {
-        return Success.ok("");
+        return Success.ok(new ItemRequest());
     }
 }
