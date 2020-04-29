@@ -1,0 +1,25 @@
+version: '2'
+services:
+  config-server:
+    container_name: config-server
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    image: config-server:latest
+    expose:
+      - 8080
+    ports:
+    - 8080:8080
+    networks:
+      - spring-cloud-network
+    volumes:
+    - spring-cloud-config-repo:/var/lib/spring-cloud/config-repo
+    logging:
+      driver: json-file
+
+networks:
+  spring-cloud-network:
+    driver: bridge
+volumes:
+  spring-cloud-config-repo:
+    external: true
