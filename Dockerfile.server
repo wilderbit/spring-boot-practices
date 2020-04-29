@@ -14,3 +14,6 @@ ENTRYPOINT ["/usr/bin/java"]
 CMD ["-jar", "/target/spring-boot-practices-0.0.1-SNAPSHOT.jar"]
 VOLUME /var/lib/spring-cloud/config-repo
 EXPOSE 8080
+
+# Passing volume to docker container
+# docker run -d --name=confi-server --publish=8080:8080 --volume=spring-cloud-config-repo:/var/lib/spring-cloud/config-repo config-server:latest
