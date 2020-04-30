@@ -1,0 +1,28 @@
+version: '2'
+services:
+  config-server:
+    container_name: server
+    build:
+      context: .
+      dockerfile: server.dockerfile
+    image: server:latest
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+    networks:
+      - spring-cloud-network
+    volumes:
+      - spring-cloud-config-repo:/var/lib/spring-cloud/config-repo
+    logging:
+      driver: json-file
+
+networks:
+  spring-cloud-network:
+    driver: bridge
+volumes:
+  spring-cloud-config-repo:
+    external: true
+
+# First build base image, go to base.dockerfile and run it
+# then run it docker-compose -f / up
